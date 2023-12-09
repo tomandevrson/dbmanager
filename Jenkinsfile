@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('Preparation'){
             steps{
-                git 'https://github.com/tomandervson/dbmanager.git'
+                sh 'echo Starting pipeline'
             }
         }
         stage('Code Coverage'){
