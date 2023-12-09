@@ -13,8 +13,8 @@ pipeline {
         }
         stage('Sonar Scan'){
             steps{
-                withCredentials([string(credentialsId: 'sonartoken', variable: 'sonartoken')]) {
-                    sh '/opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=dbmanager -Dsonar.sources=. -Dsonar.host.url=http://192.168.0.56:9000 -Dsonar.token="${sonartoken}" -Dsonar.python.coverage.reportPaths=coverage.xml'
+                withCredentials([string(credentialsId: 'sonartoken', variable: 'sonartoken'), string(credentialsId: 'sonarhost', variable: 'sonarhost')]) {
+                    sh '/opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=dbmanager -Dsonar.sources=. -Dsonar.host.url=${sonarhost} -Dsonar.token="${sonartoken}" -Dsonar.python.coverage.reportPaths=coverage.xml'
                 }
             }
         }
