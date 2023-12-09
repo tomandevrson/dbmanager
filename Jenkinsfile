@@ -14,8 +14,7 @@ pipeline {
         stage('Sonar Scan'){
             steps{
                 withCredentials([string(credentialsId: 'sonartoken', variable: 'sonartoken')]) {
-                    sh 'echo $PATH'
-                    //sh 'sonar-scanner -DprojectKey=dbmanager -Dsonar.sources=. -Dsonar.host.url=http://192.168.0.56:9000 -Dsonar.token="${sonartoken}" -Dsonar.python.coverage.reportPaths=coverage.xml'
+                    sh '/opt/sonar-scanner/bin/sonar-scanner -DprojectKey=dbmanager -Dsonar.sources=. -Dsonar.host.url=http://192.168.0.56:9000 -Dsonar.token="${sonartoken}" -Dsonar.python.coverage.reportPaths=coverage.xml'
                 }
             }
         }
